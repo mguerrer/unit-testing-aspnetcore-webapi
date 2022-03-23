@@ -19,13 +19,9 @@ namespace web_api_tests
         public ShoppingCartControllerTest(ITestOutputHelper output)
         {
             this.output = output;
-        }
-        public ShoppingCartControllerTest()
-        {
             _service = new ShoppingCartServiceFake();
             _controller = new ShoppingCartController(_service);
         }
-
         [Fact]
         public void Get_WhenCalled_ReturnsOkResult()
         {
