@@ -6,14 +6,20 @@ using web_api.Contracts;
 using web_api.Controllers;
 using web_api.Model;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace web_api_tests
 {
+
     public class ShoppingCartControllerTest
     {
         private readonly ShoppingCartController _controller;
         private readonly IShoppingCartService _service;
-
+        private readonly ITestOutputHelper output;
+        public ShoppingCartControllerTest(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
         public ShoppingCartControllerTest()
         {
             _service = new ShoppingCartServiceFake();

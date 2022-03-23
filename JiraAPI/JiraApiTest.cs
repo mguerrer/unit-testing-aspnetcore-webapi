@@ -1,11 +1,17 @@
 ﻿using System;
 using RestSharp;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace jira_tests
 {
     public class JiraApiTest
     {
+        private readonly ITestOutputHelper output;
+        public JiraApiTest(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
 
         [Fact]
         public void Issue_Add_Comment()
@@ -18,10 +24,10 @@ namespace jira_tests
             var body = @"{""body"":""Comment from GitHub pipeline...""}";
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            output.WriteLine(response.Content);
 
             // Assert
-            Console.WriteLine("Status code= " + response.StatusCode);
+            output.WriteLine("Status code= " + response.StatusCode);
         }
     }
 }
